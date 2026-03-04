@@ -1,0 +1,349 @@
+@import "tailwindcss";
+
+/* ── CSS Variables (Design Tokens) ─── */
+:root {
+  /* Colors */
+  --color-bg: #0d0d0f;
+  --color-bg-card: #18181c;
+  --color-bg-elevated: #222228;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-hover: rgba(255, 255, 255, 0.18);
+
+  /* Accent – deep rose/pink */
+  --color-accent: #e0407a;
+  --color-accent-muted: #a02050;
+  --color-accent-glow: rgba(224, 64, 122, 0.25);
+
+  /* Gold highlight (for rankings) */
+  --color-gold: #f0b84a;
+
+  /* Text */
+  --color-text-primary: #f0f0f4;
+  --color-text-secondary: #a0a0b0;
+  --color-text-muted: #606070;
+
+  /* Spacing */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-base: 0.25s ease;
+}
+
+/* ── Reset & Base ─────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  font-family: 'Noto Sans JP', 'Inter', sans-serif;
+  line-height: 1.7;
+  min-height: 100dvh;
+  /* bottom-safe for sticky tab bar */
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  background: none;
+  font: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* ── Scrollbar ───────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-hover);
+  border-radius: 3px;
+}
+
+/* ── Typography ──────────────────── */
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.3;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ── Utility Classes ─────────────── */
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Card */
+.card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color var(--transition-base), transform var(--transition-base);
+}
+
+.card:hover {
+  border-color: var(--color-border-hover);
+  transform: translateY(-2px);
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.badge-accent {
+  background: var(--color-accent-muted);
+  color: #fff;
+}
+
+.badge-gold {
+  background: var(--color-gold);
+  color: #0d0d0f;
+}
+
+.badge-muted {
+  background: var(--color-bg-elevated);
+  color: var(--color-text-secondary);
+}
+
+/* ── CTA Button ───────────────────── */
+.btn-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px 24px;
+  background: linear-gradient(135deg, var(--color-accent), #c0305a);
+  color: #fff;
+  font-size: 1.05rem;
+  font-weight: 700;
+  border-radius: var(--radius-lg);
+  letter-spacing: 0.02em;
+  box-shadow: 0 4px 20px var(--color-accent-glow);
+  transition: opacity var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+  text-align: center;
+}
+
+.btn-cta:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 8px 28px var(--color-accent-glow);
+}
+
+.btn-cta:active {
+  transform: translateY(0);
+}
+
+/* ── Section Title ────────────────── */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-border);
+  color: var(--color-text-primary);
+}
+
+.section-title::before {
+  content: '';
+  display: block;
+  width: 4px;
+  height: 1.2em;
+  background: var(--color-accent);
+  border-radius: 2px;
+}
+
+/* ── Article Body ─────────────────── */
+.article-body h2 {
+  font-size: 1.25rem;
+  margin: 2rem 0 0.8rem;
+  padding-left: 12px;
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text-primary);
+}
+
+.article-body p {
+  margin-bottom: 1rem;
+  color: var(--color-text-secondary);
+}
+
+.article-body .image-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 8px;
+  margin: 1.5rem 0;
+}
+
+.article-body .image-strip img {
+  border-radius: var(--radius-sm);
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+
+/* ── Work Card Grid ───────────────── */
+.work-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 12px;
+}
+
+@media (max-width: 480px) {
+  .work-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Sticky CTA（スマホ固定ボタン） ─── */
+.sticky-cta {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 12px 16px;
+  padding-bottom: max(12px, env(safe-area-inset-bottom));
+  background: linear-gradient(to top, rgba(13, 13, 15, 0.98) 60%, transparent);
+}
+
+/* ── Mobile Tab Bar ───────────────── */
+.tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 90;
+  background: rgba(18, 18, 22, 0.95);
+  backdrop-filter: blur(12px);
+  border-top: 1px solid var(--color-border);
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tab-bar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 8px 0 6px;
+  flex: 1;
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+}
+
+.tab-bar-item.active,
+.tab-bar-item:hover {
+  color: var(--color-accent);
+}
+
+.tab-bar-item svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ── Age Gate ────────────────────── */
+.age-gate-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--color-bg);
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  text-align: center;
+}
+
+/* ── Animations ───────────────────── */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.4s ease both;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton {
+  background: linear-gradient(90deg,
+      var(--color-bg-card) 25%,
+      var(--color-bg-elevated) 50%,
+      var(--color-bg-card) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
