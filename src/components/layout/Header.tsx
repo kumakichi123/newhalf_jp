@@ -2,12 +2,38 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const siteName = process.env.NEXT_PUBLIC_SITE_NAME ?? "ニューハーフJP";
 
 export default function Header() {
     const [menuOpen, setMenuOpen] = useState(false);
+    const [isVisible, setIsVisible] = useState(true);
+
+    useEffect(() => {
+        let lastScrollY = window.scrollY;
+
+        const handleScroll = () => {
+            // Only apply hide logic on mobile/tablets (< 768px)
+            if (window.innerWidth >= 768) {
+                setIsVisible(true);
+                return;
+            }
+
+            const currentScrollY = window.scrollY;
+            if (currentScrollY > lastScrollY && currentScrollY > 80) {
+                // Scrolling down
+                setIsVisible(false);
+            } else {
+                // Scrolling up
+                setIsVisible(true);
+            }
+            lastScrollY = currentScrollY;
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
     return (
         <header
@@ -18,6 +44,8 @@ export default function Header() {
                 background: "rgba(13,13,15,0.92)",
                 backdropFilter: "blur(16px)",
                 borderBottom: "1px solid var(--color-border)",
+                transform: isVisible ? "translateY(0)" : "translateY(-100%)",
+                transition: "transform 0.3s ease-in-out",
             }}
         >
 
@@ -46,7 +74,7 @@ export default function Header() {
                     <Link href="/review" style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem" }}>レビュー</Link>
                     <Link href="/actress" style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem" }}>女優</Link>
                     <Link href="/genre" style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem" }}>ジャンル</Link>
-                    <Link href="/column" style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem" }}>まとめ</Link>
+                    <Link href="/column" style={{ color: "var(--color-text-secondary)", fontSize: "0.9rem" }}>コラム</Link>
                 </nav>
 
                 {/* Search icon placeholder */}

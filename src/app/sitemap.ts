@@ -12,7 +12,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         { url: `${siteUrl}/actress`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
         { url: `${siteUrl}/genre`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.7 },
         { url: `${siteUrl}/column`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.8 },
+        { url: `${siteUrl}/column/what-is-newhalf`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.6 },
         { url: `${siteUrl}/legal`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.3 },
+        { url: `${siteUrl}/legal/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
+        { url: `${siteUrl}/legal/disclaimer`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     ];
 
     const reviewPages: MetadataRoute.Sitemap = items.map((item) => ({
