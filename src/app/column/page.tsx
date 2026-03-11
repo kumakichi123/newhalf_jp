@@ -36,6 +36,18 @@ const articles = [
         title: "「完パス」「オペ済」って何？初心者向け業界の専門用語一覧",
         description: "作品やお店のプロフィール欄でよく見る専門用語をわかりやすく解説します。これさえ読めば迷わない！",
         category: "用語集"
+    },
+    {
+        href: "/column/first-visit-checklist",
+        title: "初回利用チェックリスト｜予約前に確認すべき7項目",
+        description: "料金・規約・口コミの見方を、サンプル画像つきで確認できる実践ガイド。",
+        category: "初心者向け"
+    },
+    {
+        href: "/column/editorial-policy",
+        title: "編集方針・運営ポリシー",
+        description: "記事作成基準、広告表記、サンプル動画掲載ポリシーを含む運営方針を公開。",
+        category: "運営情報"
     }
 ];
 

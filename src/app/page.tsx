@@ -45,6 +45,10 @@ export default async function HomePage() {
             <span className="badge badge-accent" style={{ whiteSpace: "nowrap", flexShrink: 0 }}>マナー</span>
             <span style={{ fontSize: "0.9rem", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.4 }}>プレイで絶対NGな行動と神客の接し方</span>
           </Link>
+          <Link href="/column/first-visit-checklist" className="card" style={{ padding: "16px 20px", display: "flex", alignItems: "center", gap: "12px", textDecoration: "none" }}>
+            <span className="badge badge-accent" style={{ whiteSpace: "nowrap", flexShrink: 0 }}>初心者向け</span>
+            <span style={{ fontSize: "0.9rem", fontWeight: 500, color: "var(--color-text-primary)", lineHeight: 1.4 }}>初回利用前のチェックリスト7項目</span>
+          </Link>
         </div>
       </section>
 
